@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de animais</title>
+  </head>
+  <body>
+    <h1>Cadastro de animais</h1>
+
+    <form action="cadastrar.php" method="get">
+      <table>
+        <tr>
+          <td><label for="nome">Nome</label></td>
+          <td>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Digite o nome do animal"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="tutor">Tutor</label></td>
+          <td>
+            <input
+              type="text"
+              name="tutor"
+              placeholder="Digite o nome do tutor"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="enviar" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
+
+<!-- get - fica exposto no endereço -->
+<!-- post - fica oculto no endereço-->
