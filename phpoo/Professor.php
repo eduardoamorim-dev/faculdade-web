@@ -19,6 +19,6 @@ class Professor extends Funcionario
 
     static function teste()
     {
-        echo "Método de classe";
+        echo "<br><br>" . "Método de classe" ;
     }
 }
