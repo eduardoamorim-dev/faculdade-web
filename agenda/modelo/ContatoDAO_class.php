@@ -44,4 +44,29 @@ class ContatoDAO
             echo "Erro: " . $ex->getMessage();
         }
     }
+
+    public function listar($query = null)
+    { //se não recebe parâmetro (ou seja, uma consulta personalizada) $query recebe nulo
+        try {
+            if ($query == null) {
+                $dados = $this->con->query("SELECT * FROM contato"); //dataset = conjunto de dados, com todos os dados. query() é função PDO, executa SQL
+
+            } else {
+                $dados = $this->con->query($query); //se listar() está recebendo parâmetro este será uma SQL específica
+            }
+
+            $lista = array(); //cria chamando função array()
+            foreach ($dados as $linha) { // percorre linha a linha de dados e coloca cada registro na variavel linha (que é um array)
+                $c = new contato();
+                $c->setId($linha["id"]);
+                $c->setNome($linha["nome"]);
+                $c->setTelefone($linha["telefone"]);
+                $c->setEmail($linha["email"]);
+                $lista[] = $c;
+            }
+            return $lista;
+        } catch (PDOException $ex) {
+            echo "Erro: " . $ex->getMessage();
+        }
+    }
 }
