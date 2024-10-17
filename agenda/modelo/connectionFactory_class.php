@@ -2,43 +2,39 @@
 class ConnectionFactory
 {
     public $con = null;
-    public $dbType = "mysql";
+    public $dbType = "mysql:";
     public $host = "localhost";
     public $user = "root";
     public $senha = "";
     public $db = "agenda";
     public $persistente = false;
-    // se for persistente a conexao se mantém até que o usuário pare de se comunicar com o sistema
 
+    // Construtor, permite conexão persistente
     public function __construct($persistente = false)
     {
         if ($persistente != false) {
-            $this->persistente = true;
+            $this->persistente = true; // Corrige a atribuição
         }
     }
 
+    // Método para obter conexão com o banco de dados
     public function getConnection()
     {
         try {
-            // Persisent Data object
-            // Persisent de dados - manipular BD
+            // Corrige a string de conexão (adiciona ":")
             $this->con = new PDO(
-                $this->dbType . ":host=" . $this->host . ";dbname=" . $this->db,
+                $this->dbType . "host=" . $this->host . ";dbname=" . $this->db,
                 $this->user,
                 $this->senha,
-                array(
-                    PDO::ATTR_PERSISTENT => $this->persistente,
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                )
+                array(PDO::ATTR_PERSISTENT => $this->persistente, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
-            // String de conexão
-            //mysql:host=localhost;dbname=agenda
             return $this->con;
         } catch (PDOException $ex) {
             echo "Erro: " . $ex->getMessage();
         }
     }
 
+    // Método para fechar a conexão
     public function close()
     {
         if ($this->con != null) {
