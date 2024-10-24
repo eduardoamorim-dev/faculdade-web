@@ -1,24 +1,22 @@
 <?php
-	include_once("modelo/ContatoDAO_class.php");	
-	class CadastrarContato{
-		//CONTROLE
+	include_once("modelo/ContatoDAO_class.php");
 	
-		public function __construct(){
-			
+	class AlterarContato{
+		public function __construct(){		
 			if(isset($_POST["enviar"])){
 				//formulário enviar foi enviado
 				
 				$c = new Contato();
+				$c->setId($_POST["id"]);
 				$c->setNome($_POST["nome"]);
 				$c->setEmail($_POST["email"]);
 				$c->setTelefone($_POST["telefone"]);
-				//$c->setFoto("qwe");
+				$c->setFoto("123");
 				
 				$dao = new ContatoDAO();
-				$dao->cadastrar($c);
+				$dao->alterar($c);
 				
-				$status = "Cadastro do Contato " . $c->getNome() . 
-				" efetuado com sucesso";
+				$status = "Alteração do Contato " . $c->getNome() . " efetuada com sucesso";
 				
 				$lista = $dao->listar();
 				
@@ -26,9 +24,12 @@
 				
 			} else{
 			
-				include_once("visao/formCadastroContato.php");	
+				$dao = new ContatoDAO();
+				$cont = $dao->exibir($_GET["id"]);
+				include_once("visao/formAlteraContato.php");	
 			
 			}
 		}
 	}
+
 ?>

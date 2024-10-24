@@ -1,44 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<HTML>
+	<HEAD>
+		<TITLE> Listagem de Contatos </TITLE>
+		<META charset="UTF-8" />
+	</HEAD>
+	<BODY>
+		<?php
+			if(isset($status)){ echo "<H2>".$status."</H2>";}
+			//Se $status está preenchida, imprimir ela
+		?>
+		<A href="contato.php?fun=cadastrar" > Cadastrar </A>
+		<br /><br />
+			
+		<TABLE border="1px">
+			<TR> 
+				<TH> ID </TH>
+				<TH> Nome </TH>
+				<TH> Email </TH>
+				<TH> Telefone </TH>	
+				<TH> <img src="visao/img/update.png" width='30px' /> </TH>
+				<TH> <img src="visao/img/delete.png" width='30px' /> </TH>
+			</TR>
+			<!-- Primeira linha da tabela com o cabeçalho -->
+			
+			    <?php
+				foreach($lista as $c){	
+					echo "<TR>"; 	
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+					echo "<TD>" . $c->getId() . "</TD>";
+					
+					echo "<TD><A href='contato.php?fun=exibir&id=". $c->getId() . 
+					      "'>" . $c->getNome() . "</A></TD>";
+					
+					echo "<TD>" . $c->getEmail() . "</TD>";
+					
+					echo "<TD>" . $c->getTelefone() . "</TD>";		
+					
+					echo "<TD><A href=contato.php?fun=alterar&id=" . 
+					      $c->getId() . "><img src='visao/img/update.png' width='30px'/> 
+						  </A></TD>"; 
 
-<body>
-    <?php
-    if (isset($status)) {
-        echo "<h2>" . $status . "<h2>";
-    }
-    //Se $status está preenchida, imprimir ela
-    ?>
-    <a href="contato.php" ?fun=cadastrar> Cadastrar </a>
-    <br><br>
-
-    <table border="1px">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th><img src="visao/img/update.png" alt="" width="30px"></th>
-            <th><img src="visao/img/delete.png" alt="" width="30px"></th>
-        </tr>
-
-        <?php foreach ($lista as $c) {
-            echo "<tr>";
-            echo "<td>" . $c->getId() . "</td>";
-            echo "<td><a href=contato.php?fun=exibir&id=" . $c->getId() . ">" . $c->getNome() . "</a></td>";
-            echo "<td>" . $c->getEmail() . "</td>";
-            echo "<td>" . $c->getTelefone() . "</td>";
-            echo "<td><a href=contato.php?fun=alterar&id=" . $c->getId() . "><img src='visao/img/update.png' width=30px/></a></td>";
-            echo "<td><a href=contato.php?fun=excluir&id=" . $c->getId() . "><img src='visao/img/delete.png' width=30px/></a></td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-</body>
-
-</html>
+					echo "<TD><A href=contato.php?fun=excluir&id=" . 
+					      $c->getId() . "><img src='visao/img/delete.png' width='30px' /> 
+						  </A></TD>";	
+					
+					echo "</TR>";	
+				}	
+			?>	
+		</TABLE>
+	</BODY>
+</HTML>
