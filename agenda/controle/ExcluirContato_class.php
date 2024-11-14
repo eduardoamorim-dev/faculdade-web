@@ -12,7 +12,6 @@
 				
 					$dao = new ContatoDAO();
 					$cont = $dao->exibir($_GET["id"]);
-					//unlink($cont->getFoto());
 					$dao->excluir($cont);
 					$status = "O contato " . $cont->getNome() . " foi excluído com sucesso";
 					
