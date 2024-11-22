@@ -1,30 +1,30 @@
-<HTML>
+<html>
 
-	<HEAD>
-		<TITLE> Cadastrar Contato </TITLE>
-		<META charset="UFT-8" />
-	</HEAD>
-	
-	<BODY>
-	
-		<H1> Cadastrar Contato </H1>
-		
-		<FORM action="contato.php?fun=cadastrar" method="POST" enctype="multipart/form-data">
+<head>
+	<title> Cadastrar Contato </title>
+	<meta charset="UFT-8" />
+</head>
+
+<body>
+
+	<h1> Cadastrar Contato </h1>
+
+	<form action="contato.php?fun=cadastrar" method="POST" enctype="multipart/form-data">
 		<!-- POST -> envio de informações escondidas -->
-	
-			<LABEL for="nome"> Nome: </LABEL> 
-			<INPUT type="text" name="nome" id="nome" value="<?php echo $c->getNome(); ?>"/> <br /><br />
-			
-			<LABEL for="email"> Email: </LABEL> 
-			<INPUT type="text" name="email" id="email"/> <br /><br />
-			
-			<LABEL for="telefone"> Telefone: </LABEL> 
-			<INPUT type="text" name="telefone" id="telefone"/> <br /><br />
-			
-			<INPUT type="submit" name="enviar" value="Enviar" />
-			
-		</FORM>
-	
-	</BODY>
 
-</HTML>
+		<label for="nome"> Nome: </label>
+		<input type="text" name="nome" id="nome" value="<?php echo $c->getNome(); ?>" /> <br /><br />
+
+		<label for="email"> Email: </label>
+		<input type="text" name="email" id="email" /> <br /><br />
+
+		<label for="telefone"> Telefone: </label>
+		<input type="text" name="telefone" id="telefone" /> <br /><br />
+
+		<input type="submit" name="enviar" value="Enviar" />
+
+	</form>
+
+</body>
+
+</html>

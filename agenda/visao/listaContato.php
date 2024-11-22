@@ -1,18 +1,18 @@
-<HTML>
+<html>
 
-<HEAD>
-	<TITLE> Listagem de Contatos </TITLE>
-	<META charset="UTF-8" />
-</HEAD>
+<head>
+	<title> Listagem de Contatos </title>
+	<meta charset="UTF-8" />
+</head>
 
-<BODY>
+<body>
 	<?php
 	if (isset($status)) {
 		echo "<H2>" . $status . "</H2>";
 	}
 	//Se $status está preenchida, imprimir ela
 	?>
-	<A href="contato.php?fun=cadastrar"> Cadastrar </A>
+	<a href="contato.php?fun=cadastrar"> Cadastrar </a>
 	<br /><br />
 
 	<TABLE border="1px">
@@ -32,25 +32,25 @@
 
 			echo "<TD>" . $c->getId() . "</TD>";
 
-			echo "<TD><A href='contato.php?fun=exibir&id=" . $c->getId() .
-				"'>" . $c->getNome() . "</A></TD>";
+			echo "<TD><a  href='contato.php?fun=exibir&id=" . $c->getId() .
+				"'>" . $c->getNome() . "</a></TD>";
 
 			echo "<TD>" . $c->getEmail() . "</TD>";
 
 			echo "<TD>" . $c->getTelefone() . "</TD>";
 
-			echo "<TD><A href=contato.php?fun=alterar&id=" .
+			echo "<TD><a  href=contato.php?fun=alterar&id=" .
 				$c->getId() . "><img src='visao/img/update.png' width='30px'/> 
-						  </A></TD>";
+						  </a></TD>";
 
-			echo "<TD><A href=contato.php?fun=excluir&id=" .
+			echo "<TD><a  href=contato.php?fun=excluir&id=" .
 				$c->getId() . "><img src='visao/img/delete.png' width='30px' /> 
-						  </A></TD>";
+						  </a></TD>";
 
 			echo "</TR>";
 		}
 		?>
 	</TABLE>
-</BODY>
+</body>
 
-</HTML>
+</html>

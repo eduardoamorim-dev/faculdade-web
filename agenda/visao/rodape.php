@@ -1,9 +1,8 @@
 </aside>
+<a rticle>
+  <img src="visao/componentes/images/lista.png" alt="" id="imgPrincipal" />
+  </article>
+  </main>
+  </body>
 
-<article>
-    <img src="visao/componentes/images/contato.png" alt="contact-img" />
-</article>
-</main>
-</body>
-
-</html>
+  </html>

@@ -2,7 +2,7 @@
 class ConnectionFactory
 {
 	public $con = null;
-	public $dbType = "mysql";
+	public $dbType = "mysql:";
 	public $host = "localhost";
 	public $user = "root";
 	public $senha = "";

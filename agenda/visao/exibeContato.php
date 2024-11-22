@@ -1,20 +1,21 @@
-<HTML>
+<html>
 
-	<HEAD>
-		<TITLE> Contato <?php echo $cont->getNome(); ?> </TITLE>
-	</HEAD>
+<head>
+	<title> Contato <?php echo $cont->getNome(); ?> </title>
+</head>
 
-	<BODY>
-		
-		<H1> Contato <?php echo $cont->getNome(); ?> </H1>
-		<UL>
-			<LI>Nome: <?php echo $cont->getNome(); ?></LI>
-			<LI>Telefone: <?php echo $cont->getTelefone(); ?></LI>
-			<LI>E-mail: <?php echo $cont->getEmail(); ?></LI>
-		</UL>
-		
-		<A href="contato.php?fun=listar"> Voltar </A>
-		
-	</BODY>
-	
-</HTML>
+<body>
+
+	<h1> Contato <?php echo $cont->getNome(); ?> </h1>
+	<ul>
+		<li>Nome: <?php echo $cont->getNome(); ?></li>
+		<li>Telefone: <?php echo $cont->getTelefone(); ?></li>
+		<li>E-mail: <?php echo $cont->getEmail(); ?></li>
+		<li> <img src=<?php echo $cont->getFoto(); ?> width="100" /> </li>
+	</ul>
+
+	<a href="contato.php?fun=listar"> Voltar </a>
+
+</body>
+
+</html>

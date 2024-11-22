@@ -12,6 +12,7 @@
 				$c->setNome($_POST["nome"]);
 				$c->setEmail($_POST["email"]);
 				$c->setTelefone($_POST["telefone"]);
+				//$c->setFoto("qwe");
 				
 				$dao = new ContatoDAO();
 				$dao->cadastrar($c);
