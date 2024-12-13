@@ -1,4 +1,3 @@
-// script.js
 $(document).ready(function () {
   let score = 0;
   let timeLeft = 60;
@@ -11,8 +10,8 @@ $(document).ready(function () {
   const clickSound = new Audio("/audio/click-hammer.wav");
 
   $(document).ready(function () {
-    $("body").css({
-      cursor: "url(/assets/martelo.png) 16 16, pointer", 
+    $("body, .button").css({
+      cursor: "url(/assets/hammer.png) 16 16, pointer",
     });
   });
 
