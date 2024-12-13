@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #87CEFA, #f0f8ff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.game-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: white;
+    border: 5px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('/assets/capivara.png') no-repeat center/cover;
+    cursor: pointer;
+}
+
+.score, .timer {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.score {
+    left: 10px;
+}
+
+.timer {
+    right: 10px;
+}
