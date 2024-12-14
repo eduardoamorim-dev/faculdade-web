@@ -2,6 +2,7 @@ $(document).ready(function () {
   let score = 0;
   let timeLeft = 60;
   let buttonCount = 1;
+  let penaltyTime = 0;
   const minTime = 30;
   const $gameContainer = $("#gameContainer");
   const $score = $("#score");
@@ -9,14 +10,23 @@ $(document).ready(function () {
 
   const clickSound = new Audio("/audio/click-hammer.wav");
 
-  $(document).ready(function () {
-    $("body, .button").css({
-      cursor: "url(/assets/hammer.png) 16 16, pointer",
-    });
+  $("body, .button").css({
+    cursor: "url(/assets/hammer.png) 16 16, pointer",
   });
 
+  function startGame() {
+    score = 0;
+    timeLeft = 60;
+    buttonCount = 1;
+    penaltyTime = 0;
+    $score.text("Pontos: " + score);
+    $timer.text("Tempo: " + timeLeft + "s");
+    createButtons();
+    updateTimer();
+  }
+
   function createButtons() {
-    $gameContainer.find(".button").remove();
+    $gameContainer.find(".button, .hammer-button").remove();
     for (let i = 0; i < buttonCount; i++) {
       const $button = $('<div class="button"></div>');
       $gameContainer.append($button);
@@ -29,11 +39,11 @@ $(document).ready(function () {
 
         if (score >= 90 && score % 20 === 0) {
           buttonCount++;
-          timeLeft = minTime; // Reseta o tempo para 30 segundos a cada 20 acertos após 90 pontos
+          timeLeft = minTime - penaltyTime; // Reseta o tempo para 30 segundos menos a penalidade a cada 20 acertos após 90 pontos
           createButtons();
-        } else if (score < 90 && score % 30 === 0) {
+        } else if (score < 90 && score % 20 === 0) {
           buttonCount++;
-          timeLeft = 60; // Reseta o tempo para 60 segundos a cada 30 acertos antes de 90 pontos
+          timeLeft = 60 - penaltyTime; // Reseta o tempo para 60 segundos menos a penalidade a cada 20 acertos antes de 90 pontos
           createButtons();
         }
 
@@ -41,38 +51,51 @@ $(document).ready(function () {
           timeLeft = Math.max(minTime, timeLeft - 10);
         }
       });
+
+      setInterval(function () {
+        moveButton($button);
+      }, 2000);
+    }
+
+    for (let i = 0; i < buttonCount; i++) {
+      const $hammerButton = $('<div class="hammer-button"></div>');
+      $gameContainer.append($hammerButton);
+      moveButton($hammerButton);
+      $hammerButton.on("click", function () {
+        score--;
+        penaltyTime += 5;
+        timeLeft -= 5;
+        $score.text("Pontos: " + score);
+        $timer.text("Tempo: " + timeLeft + "s");
+        moveButton($hammerButton);
+      });
+
+      setInterval(function () {
+        moveButton($hammerButton);
+      }, 2000);
     }
   }
 
   function moveButton($button) {
-    const containerWidth = $gameContainer.width();
-    const containerHeight = $gameContainer.height();
-    const buttonWidth = $button.width();
-    const buttonHeight = $button.height();
-
-    const randomX = Math.floor(Math.random() * (containerWidth - buttonWidth));
-    const randomY = Math.floor(
-      Math.random() * (containerHeight - buttonHeight)
-    );
-
-    $button.css({
-      left: randomX + "px",
-      top: randomY + "px",
-    });
+    const maxX = $gameContainer.width() - $button.width();
+    const maxY = $gameContainer.height() - $button.height();
+    const newX = Math.floor(Math.random() * maxX);
+    const newY = Math.floor(Math.random() * maxY);
+    $button.css({ left: newX + "px", top: newY + "px" });
   }
 
-  function startTimer() {
+  function updateTimer() {
     const timerInterval = setInterval(function () {
-      timeLeft--;
-      $timer.text("Tempo: " + timeLeft + "s");
-      if (timeLeft <= 0) {
+      if (timeLeft > 0) {
+        timeLeft--;
+        $timer.text("Tempo: " + timeLeft + "s");
+      } else {
         clearInterval(timerInterval);
-        alert("Fim de jogo! Sua pontuação: " + score);
-        location.reload();
+        alert("Game Over! Pontuação final: " + score);
+        startGame();
       }
     }, 1000);
   }
 
-  createButtons();
-  startTimer();
+  startGame();
 });

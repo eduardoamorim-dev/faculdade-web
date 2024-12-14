@@ -33,9 +33,18 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    background: url('/assets/capivara.png') no-repeat center/cover;
+    background: url('/assets/tick.png') no-repeat center/cover;
     cursor: pointer;
     z-index: 2; 
+}
+
+.hammer-button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('/assets/capivara.png') no-repeat center/cover;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .score, .timer {
