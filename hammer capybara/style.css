@@ -29,6 +29,15 @@ body {
     z-index: 1;
 }
 
+.blood {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('/assets/blood.png') no-repeat center/cover;
+    cursor: pointer;
+    z-index: 2; 
+}
+
 .button {
     position: absolute;
     width: 100px;

@@ -8,7 +8,7 @@ $(document).ready(function () {
   const $score = $("#score");
   const $timer = $("#timer");
 
-  const clickSound = new Audio("/audio/click-hammer.wav");
+  const clickSound = new Audio("/audio/blood.wav");
 
   $("body, .button").css({
     cursor: "url(/assets/hammer.png) 16 16, pointer",
@@ -35,7 +35,17 @@ $(document).ready(function () {
         score++;
         clickSound.play();
         $score.text("Pontos: " + score);
-        moveButton($button);
+
+        setTimeout(() => {
+          clickSound.pause();
+          clickSound.currentTime = 0;
+        }, 250);
+        
+        $button.addClass('blood').removeClass('button');
+        setTimeout(() => {
+          $button.removeClass('blood').addClass('button');
+          moveButton($button);
+        }, 500);
 
         if (score >= 90 && score % 20 === 0) {
           buttonCount++;
