@@ -25,7 +25,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adiciona opacidade ao background */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -34,25 +34,22 @@ body {
     width: 100px;
     height: 100px;
     background: url('/assets/blood.png') no-repeat center/cover;
-    cursor: pointer;
     z-index: 2; 
 }
 
-.button {
+.tick-button {
     position: absolute;
     width: 100px;
     height: 100px;
     background: url('/assets/tick.png') no-repeat center/cover;
-    cursor: pointer;
     z-index: 2; 
 }
 
-.hammer-button {
+.capybara-button {
     position: absolute;
     width: 100px;
     height: 100px;
     background: url('/assets/capivara.png') no-repeat center/cover;
-    cursor: pointer;
     z-index: 2;
 }
 

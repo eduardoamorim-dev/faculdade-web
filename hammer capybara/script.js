@@ -8,9 +8,15 @@ $(document).ready(function () {
   const $score = $("#score");
   const $timer = $("#timer");
 
-  const clickSound = new Audio("/audio/blood.wav");
+  const clickTick = new Audio("/audio/blood.wav");
+  const clickCapybara = new Audio("/audio/capybara.wav");
+  const gameOver = new Audio("/audio/gameOver.wav");
+  const music = new Audio("/audio/music.wav");
 
-  $("body, .button").css({
+  clickCapybara.volume = 0.2;
+  music.volume = 0.3;
+
+  $("body, .button, .hammer-button").css({
     cursor: "url(/assets/hammer.png) 16 16, pointer",
   });
 
@@ -23,28 +29,39 @@ $(document).ready(function () {
     $timer.text("Tempo: " + timeLeft + "s");
     createButtons();
     updateTimer();
+    music.play();
+    music.loop = true;
   }
 
   function createButtons() {
-    $gameContainer.find(".button, .hammer-button").remove();
+
+    $gameContainer.find(".tick-button , .hammer-button").remove();
+
     for (let i = 0; i < buttonCount; i++) {
-      const $button = $('<div class="button"></div>');
-      $gameContainer.append($button);
-      moveButton($button);
-      $button.on("click", function () {
+      const $tickButton = $('<div class="tick-button "></div>');
+
+      $gameContainer.append($tickButton);
+      moveButton($tickButton);
+
+      $tickButton.on("click", function () {
+        clickTick.play();
         score++;
-        clickSound.play();
         $score.text("Pontos: " + score);
 
+        $("body").css("cursor", "url(/assets/hammer-click.png) 16 16, pointer");
         setTimeout(() => {
-          clickSound.pause();
-          clickSound.currentTime = 0;
+          $("body").css("cursor", "url(/assets/hammer.png) 16 16, pointer");
+        }, 250);
+
+        setTimeout(() => {
+          clickTick.pause();
+          clickTick.currentTime = 0;
         }, 250);
         
-        $button.addClass('blood').removeClass('button');
+        $tickButton.addClass('blood').removeClass('tick-button');
         setTimeout(() => {
-          $button.removeClass('blood').addClass('button');
-          moveButton($button);
+          $tickButton.removeClass('blood').addClass('tick-button');
+          moveButton($tickButton);
         }, 500);
 
         if (score >= 90 && score % 20 === 0) {
@@ -63,25 +80,35 @@ $(document).ready(function () {
       });
 
       setInterval(function () {
-        moveButton($button);
+        moveButton($tickButton);
       }, 2000);
     }
 
+
+
     for (let i = 0; i < buttonCount; i++) {
-      const $hammerButton = $('<div class="hammer-button"></div>');
-      $gameContainer.append($hammerButton);
-      moveButton($hammerButton);
-      $hammerButton.on("click", function () {
+      const $capybaraButton = $('<div class="capybara-button"></div>');
+      $gameContainer.append($capybaraButton);
+      moveButton($capybaraButton);
+      $capybaraButton.on("click", function () {
+        clickCapybara.play();
         score--;
         penaltyTime += 5;
         timeLeft -= 5;
         $score.text("Pontos: " + score);
         $timer.text("Tempo: " + timeLeft + "s");
-        moveButton($hammerButton);
+
+        // Muda o cursor para hammer-click.png
+        $("body").css("cursor", "url(/assets/hammer-click.png) 16 16, pointer");
+        setTimeout(() => {
+          $("body").css("cursor", "url(/assets/hammer.png) 16 16, pointer");
+        }, 250);
+
+        moveButton($capybaraButton);
       });
 
       setInterval(function () {
-        moveButton($hammerButton);
+        moveButton($capybaraButton);
       }, 2000);
     }
   }
@@ -101,6 +128,9 @@ $(document).ready(function () {
         $timer.text("Tempo: " + timeLeft + "s");
       } else {
         clearInterval(timerInterval);
+        music.pause();
+        gameOver.play();
+        music.currentTime = 0;
         alert("Game Over! Pontuação final: " + score);
         startGame();
       }
