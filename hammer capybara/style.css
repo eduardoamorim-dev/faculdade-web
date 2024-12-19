@@ -37,6 +37,14 @@ body {
     z-index: 2; 
 }
 
+.ghost-capybara {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: url('/assets/ghostCapybara.png') no-repeat center/cover;
+    z-index: 2; 
+}
+
 .tick-button {
     position: absolute;
     width: 100px;

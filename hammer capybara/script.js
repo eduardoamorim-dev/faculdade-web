@@ -103,8 +103,13 @@ $(document).ready(function () {
         setTimeout(() => {
           $("body").css("cursor", "url(/assets/hammer.png) 16 16, pointer");
         }, 250);
-
-        moveButton($capybaraButton);
+        
+        
+        $capybaraButton.addClass('ghost-capybara').removeClass('capybara-button');
+        setTimeout(() => {
+          $capybaraButton.removeClass('ghost-capybara').addClass('capybara-button');
+          moveButton($capybaraButton);
+        }, 500);
       });
 
       setInterval(function () {
