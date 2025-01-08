@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jogo de Clicar no Botão</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Acerte o Carrapato</title>
+    <link rel="stylesheet" href="style.css" /> 
   </head>
   <body>
+    <!-- Container principal do jogo -->
     <div class="game-container" id="gameContainer">
+      <!-- Elemento para mostrar a pontuação -->
       <div class="score" id="score">Pontos: 0</div>
+      <!-- Elemento para mostrar o tempo restante -->
       <div class="timer" id="timer">Tempo: 60s</div>
-      <img src="/assets/game-over.png" id="gameOverImage" class="game-over" title="game over">
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para manipulação do DOM -->
+    <script src="script.js"></script> <!-- Script principal do jogo -->
   </body>
 </html>

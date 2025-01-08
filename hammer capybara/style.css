@@ -1,23 +1,30 @@
+/* Estilo global do corpo da página */
 body {
     font-family: Arial, sans-serif;
+    /* Gradiente de fundo do céu */
     background: linear-gradient(to bottom, #87CEFA, #f0f8ff);
     height: 100vh;
+    /* Centraliza todo o conteúdo na página */
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
 }
 
+/* Container principal do jogo */
 .game-container {
     position: relative;
+    /* Dimensões responsivas baseadas no viewport */
     width: 80vw;
     height: 80vh;
+    /* Imagem de fundo da lagoa */
     background: url('/assets/lagoa.avif') no-repeat center/cover;
     border: 5px solid #000;
     border-radius: 10px;
     overflow: hidden;
 }
 
+/* Overlay escuro sobre o fundo do jogo */
 .game-container::before {
     content: '';
     position: absolute;
@@ -25,12 +32,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Camada semi-transparente preta para melhor contraste */
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
-.game-over{
+/* Tela de Game Over (inicialmente oculta) */
+.game-over {
     display: none;
+    /* Centralização absoluta */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,6 +48,7 @@ body {
     z-index: 3;
 }
 
+/* Animação de sangue ao matar carrapato */
 .blood {
     position: absolute;
     width: 100px;
@@ -46,6 +57,7 @@ body {
     z-index: 2; 
 }
 
+/* Animação de fantasma da capivara */
 .ghost-capybara {
     position: absolute;
     width: 150px;
@@ -54,6 +66,7 @@ body {
     z-index: 2; 
 }
 
+/* Estilo do botão do carrapato */
 .tick-button {
     position: absolute;
     width: 100px;
@@ -62,6 +75,7 @@ body {
     z-index: 2; 
 }
 
+/* Estilo do botão da capivara */
 .capybara-button {
     position: absolute;
     width: 100px;
@@ -70,6 +84,7 @@ body {
     z-index: 2;
 }
 
+/* Estilos comuns para pontuação e timer */
 .score, .timer {
     position: absolute;
     top: 10px;
@@ -78,12 +93,14 @@ body {
     color: #333;
 }
 
+/* Posicionamento e cor específicos da pontuação */
 .score {
     left: 10px;
     color: white;
     z-index: 2;
 }
 
+/* Posicionamento e cor específicos do timer */
 .timer {
     right: 10px;
     color: white;
